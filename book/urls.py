@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import *
+from .views.borrow_books_view import *
+from .views.utils import *
+from .views.mypage import *
+from .views.mainpage import *
+from .views.categorys import *
+from .views.register_books_view import *
+
 
 urlpatterns = [
     path('', main, name="main"),
