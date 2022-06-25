@@ -1,1 +1,0 @@
-web: gunicorn billim.wsgi --log-file -
