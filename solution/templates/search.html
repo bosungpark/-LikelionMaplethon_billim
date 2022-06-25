@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="/static/css/solution_main.css" />
+</head>
+<body>
+<h1 class="title1">검색 결과</h1>
+{% if not data %}
+<h1>NO RESULT</h1>
+{% else %}
+<br>
+<br>
+
+<div class="body">
+    {% for content in data %}
+    <div class="content">
+        <h2>{{content.title}}</h2>
+        <div class="sub">
+            <b> {{content.writer}}</b><br>
+            {{content.summary}}<br> <a href="{%url 'solution_detail' content.id %}"
+                id="more_link">more...</a><br><br>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+{% endif %}
+{% endblock %}
+</body>

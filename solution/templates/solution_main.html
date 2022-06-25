@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="/static/css/solution_main.css" />
+</head>
+
+<body>
+    <h1>솔루션 찾기</h1>
+    <br>
+    <form action="{% url 'solution_search' %}" method="post">
+        {% csrf_token %}
+        <input id="search" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="find" value="{{find}}">
+        <button id="search_btn" type="submit">검색</button>
+    </form>
+
+    <div class="body">
+        {% for content in posts %}
+        <div class="content">
+            <h2>{{content.title}}</h2>
+            <div class="sub">
+                <b> {{content.writer}}</b><br>
+                {{content.summary}}<br> <a href="{%url 'solution_detail' content.id %}"
+                    id="more_link">more...</a><br><br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <br>
+    <div class="page">
+        {% if posts.has_previous %}
+        <a href="?page=1">1</a>
+        <a href="?page={{posts.previous_page_number}}">◀</a>
+        {% endif %}
+
+        <span>{{posts.number}}</span>
+        <span>of</span>
+        <span>{{posts.paginator.num_pages}}</span>
+
+        {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}">▶</a>
+        <a href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>
+        {% endif %}
+    </div>
+
+    <br>
+</body>
+
+{% endblock %}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/nav.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nanum+Gothic:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="/static/js/nav.js"></script>
+    <link rel="shortcut icon" href="/static/images/icon.png" type="image/x-icon">
+    <title>빌林의 숲</title>
+</head>
+
+<body>
+    <div id="top">
+        <a href="{% url 'main' %}">
+            <div id="top_logo">
+                <!-- 빌려주다 -->
+            </div>
+        </a>
+        <div id="register">
+            {% if not user.is_authenticated %}
+            <div id="login">
+            <a href="{% url 'account:login' %}">로그인 &nbsp&nbsp&nbsp</a>
+            </div>
+            <div id="signup">
+            <a href="{% url 'account:signup' %}">회원가입</a>
+            </div>
+            {% else %}
+            <div id="coin">
+            💰 코인 : {{request.user.coin}}
+            </div>
+            <div id="logout">
+                <a href="{% url 'account:logout' %}">로그아웃</a>
+                {% endif %}
+            </div>
+            <div id="mypage">
+            {% if user.is_authenticated %}
+                <a href="{% url 'mypage' %}">마이페이지</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <div id="header">
+        <div class="header_in" id="header_1">
+            <div class="header_text">
+                등록
+            </div>
+        </div>
+        <div class="header_in" id="header_2">
+            <div class="header_text">
+                대여
+            </div>
+        </div>
+        <div class="header_in" id="header_3">
+            <div class="header_text">
+                솔루션
+            </div>
+        </div>
+        <div class="header_in" id="header_4">
+            <div class="header_text">
+                빌림의 숲
+            </div>
+        </div>
+    </div>
+    <div id="header_specific">
+        <div id="enroll" class="header_specific_in">
+            {% if user.is_authenticated %}
+            <a href="{% url 'new' %}">
+                <div id="enroll_1" class="enroll_in">
+                    책 등록하기
+                </div>
+            </a>
+            {% else %}
+            <a onclick="alert('로그인 해주세요');" href="#">
+                <div id="enroll_1" class="enroll_in">
+                    책 등록하기
+                </div>
+            </a>
+            {% endif %}
+            
+            {% if user.is_authenticated %}
+            <div id="enroll_2" class="enroll_in">
+                <a href="{% url 'mybook' %}">
+                    내가 등록한 책
+            </div>
+            </a>
+            {% endif %}
+        </div>
+        <div id="borrow" class="header_specific_in">
+            {% if user.is_authenticated %}
+            <a href="{% url 'book_list' %}">
+                <div id="borrow_1" class="borrow_in">
+                    책 대여하기
+                </div>
+            </a>
+            {% else %}
+            <a onclick="alert('로그인 해주세요');" href="#">
+                <div id="borrow_1" class="borrow_in">
+                    책 대여하기
+                </div>
+            </a>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="{% url 'myborrowed_book' %}">
+                <div id="borrow_2" class="borrow_in">
+                    내가 대여중인 책
+                </div>
+            </a>
+            {% endif %}
+            
+            {% if user.is_authenticated %}
+            <a href="{% url 'mail' %}">
+                <div id="borrow_3" class="borrow_in">
+                    책 요청하기
+                </div>
+            </a>
+            {% else %}
+            <a onclick="alert('로그인 해주세요');" href="#">
+                <div id="borrow_3" class="borrow_in">
+                    책 요청하기
+                </div>
+            </a>
+            {% endif %}
+        </div>
+        <div id="solution" class="header_specific_in">
+            <!-- 권한 부여 여부 -->
+            
+            {% if user.is_authenticated %}
+            <a href="{% url 'solution_new'%}">
+                <div id="solution_1" class="solution_in">
+                    솔루션 등록하기
+                </div>
+            </a>
+            {% else %}
+            <a onclick="alert('로그인 해주세요');" href="#">
+                <div id="solution_1" class="solution_in">
+                    솔루션 등록하기
+                </div>
+            </a>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'solution_home'%}">
+                <div id="solution_2" class="solution_in">
+                    솔루션 찾기
+                </div>
+            </a>
+            {% else %}
+            <a onclick="alert('로그인 해주세요');" href="#">
+                <div id="solution_2" class="solution_in">
+                    솔루션 찾기
+                </div>
+            </a>
+            {% endif %}
+            
+                <!-- <div id="solution_3" class="solution_in">
+                    솔루션 요청하기
+                </div> -->
+        </div>
+        <div id="billim" class="header_specific_in">
+            <a href="{% url 'notice' %}">
+                <div id="billim_1" class="billim_in">
+                    공지사항
+                </div>
+            </a>
+            <a href="{% url 'guide' %}">
+                <div id="billim_2" class="billim_in">
+                    이용안내
+                </div>
+            </a>
+            <a href="{% url 'producer' %}">
+                <div id="billim_3" class="billim_in">
+                    만든이
+                </div>
+            </a>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="/static/css/solution_write.css" />
+</head>
+
+<body>
+    <h1>솔루션 등록하기</h1>
+    <hr>
+    <div class="container">
+        <form action="{%url 'solution_new' %}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <h2>제목 : {{form.title}}</h2>
+            <h2>질문 내용 : {{form.content}}</h2>
+            <h2>이미지 : {{form.img}}</h2>
+            <br>
+            <button type="submit" id="submit">등록하기</button>
+        </form>
+    </div>
+</body>
+
+{% endblock %}
