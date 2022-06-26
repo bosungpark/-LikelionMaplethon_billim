@@ -1,9 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
-from ..models.user_model import CustomUser
+from ..models.user_model import User
 
 class SignupForm(UserCreationForm):
     class Meta:
-        model=CustomUser
+        model=User
         fields=['username','password1','password2','email','address']
         labels = {
             'username' : '아이디',
