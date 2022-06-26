@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from ..models import MajorBook, BorrowedBook
 from solution.models import Solution#솔루션 책의 데이터
 
-def main(request):
+def mainpage(request):
     """
     메인 페이지 함수
     """
@@ -17,4 +17,4 @@ def main(request):
     solutions = solution_paginator.get_page(book)
 
     contents = Solution.objects.all().order_by('-id')
-    return render(request, 'main.html', {'books' : books, 'solutions' : solutions,'contents' : contents})
+    return render(request, 'mainpage.html', {'books' : books, 'solutions' : solutions,'contents' : contents})

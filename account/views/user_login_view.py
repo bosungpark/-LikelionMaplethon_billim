@@ -24,7 +24,7 @@ def login_view(request):
                     )
                     if user is not None:
                         auth.login(request,user)
-                        return redirect('main')
+                        return redirect('mainpage')
                 logging.info('Unauthorized, status=401')
                 return redirect('account:login')
         except:

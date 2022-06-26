@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.utils import timezone
-from ..models import MajorBook, BorrowedBook
-from ..forms import BookForm, BorrowedBookForm
+from ..models import MajorBook
+from ..forms import BookForm
 from django.contrib import messages
 
 def mybook(request):

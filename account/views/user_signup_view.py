@@ -16,7 +16,7 @@ def signup_view(request):
                 if form.is_valid():
                     user = form.save()
                     auth.login(request, user)
-                    return redirect('main')
+                    return redirect('mainpage')
                 logging.info('Bad Request, status=400')
                 return redirect('account:signup')
         except:

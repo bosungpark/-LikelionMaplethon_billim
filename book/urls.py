@@ -9,7 +9,7 @@ from .views.mail_view import *
 
 
 urlpatterns = [
-    path('', main, name="main"),
+    path('', mainpage, name="mainpage"),
     path('book_list', book_list, name="book_list"),
     path('detail/<int:pk>', detail, name="detail"),
     path('new/', new, name="new"),
@@ -19,11 +19,7 @@ urlpatterns = [
     path('delete/<int:pk>', delete, name="delete"),
     path('mypage/', mypage, name="mypage"),
 
-    path('category/IT/', category_IT, name="category_IT"),
-    path('category/society/', category_society, name="category_society"),
-    path('category/science/', category_science, name="category_science"),
-    path('category/art/', category_art, name="category_art"),
-    path('category/etc/', category_etc, name="category_etc"),
+    path('category', category, name="category"),
 
     path('mybook/', mybook, name="mybook"),
     path('myborrowed_book/', myborrowed_book, name="myborrowed_book"),
