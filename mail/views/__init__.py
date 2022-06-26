@@ -1,1 +1,0 @@
-from .mail_view import mail

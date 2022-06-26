@@ -5,6 +5,7 @@ from .views.mypage import *
 from .views.mainpage import *
 from .views.categorys import *
 from .views.register_books_view import *
+from .views.mail_view import *
 
 
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     path('myborrowed_book/', myborrowed_book, name="myborrowed_book"),
     path('search/', search, name="search"),
     path('placeholder/', placeholder, name="placeholder"),
+    path('mail/', mail, name="mail"),
 ]

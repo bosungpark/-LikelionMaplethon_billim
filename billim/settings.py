@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'solution',
     'account',
     'information',
-    'mail',
 ]
 
 MIDDLEWARE = [
