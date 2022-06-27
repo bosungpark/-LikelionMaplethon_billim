@@ -8,7 +8,7 @@
   <h1>수정하기</h1>
   <hr />
   <div class="container">
-    <form action="{% url 'update' book.pk %}" method="post">
+    <form action="{% url 'crud' book.pk %}" method="post">
       {% csrf_token %}
       <h2>제목: <input type="text" name="title" value="{{book.title}}" /></h2>
       <h2>저자: <input type="text" name="author" value="{{book.author}}" /></h2>
@@ -30,7 +30,7 @@
       </h2>
       <br />
 
-      <button type="submit" onclick="location.href='{% url 'new' %}'" id="submit">
+      <button type="submit" onclick="location.href='{% url 'crud' %}'" id="submit">
         수정하기
       </button>
     </form>

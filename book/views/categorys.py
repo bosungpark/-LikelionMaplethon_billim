@@ -7,7 +7,7 @@ def category(request):
     """
     카테고리 선택 함수입니다.
     """
-    category = request.get("category","")
+    category = request.GET.get("category","")
     books = MajorBook.objects.all().filter(category=category).order_by('-id')
     paginator = Paginator(books, 8)
     page = request.GET.get('page')

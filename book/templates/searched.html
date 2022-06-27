@@ -10,7 +10,7 @@
   <div class="body">
   {% for book in books %}
     <div class="content">
-      <h2><a href="{%url 'detail' book.id %}">{{book.title}}</a></h2>
+      <h2><a href="{%url 'crud' book.id %}">{{book.title}}</a></h2>
       <div class="sub">
         {{book.author}} | {{book.publisher}}<br /><br />
         {% if book.img %}

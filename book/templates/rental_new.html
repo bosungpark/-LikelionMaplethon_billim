@@ -11,7 +11,7 @@
     <h1>책 등록하기</h1>
     <hr>
     <div class="container">
-    <form action="{%url 'new' %}" method="post" enctype="multipart/form-data">
+    <form action="{%url 'crud' %}" method="post" enctype="multipart/form-data">
         {%csrf_token%} 
         <h2>제목 : {{form.title}}</h2>
         <h2>저자 : {{form.author}}</h2>

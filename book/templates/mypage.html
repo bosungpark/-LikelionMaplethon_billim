@@ -41,7 +41,7 @@
         </thead>
         <tbody>
           {% for book in books %}
-          <tr onclick="location.href='/book/detail/{{book.pk}}'">
+          <tr onclick="location.href='/book/crud/{{book.pk}}'">
             <td>▶</td>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
@@ -72,7 +72,7 @@
         </thead>
         <tbody>
           {% for borrowed_book in borrowed_books %} {% if borrowed_book.borrow_book.status == '대여중' %}
-          <tr onclick="location.href='/book/detail/{{borrowed_book.borrow_book.pk}}'">
+          <tr onclick="location.href='/book/crud/{{borrowed_book.borrow_book.pk}}'">
             <td>▶</td>
             <td>{{ borrowed_book.borrow_book.title }}</td>
             <td>{{ borrowed_book.borrow_book.author }}</td>

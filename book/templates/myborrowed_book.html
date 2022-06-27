@@ -14,7 +14,7 @@
     {% for content in posts %}
       {% if content.borrow_book.status == '대여중' %}
       <div class="content">
-        <h2><a href="{%url 'detail' content.borrow_book.id %}">{{content.borrow_book.title}}</a></h2>
+        <h2><a href="{%url 'crud' content.borrow_book.id %}">{{content.borrow_book.title}}</a></h2>
         <div class="sub">
           {{content.borrow_book.author}} | {{content.borrow_book.publisher}}<br /><br />
           {% if content.borrow_book.img %}

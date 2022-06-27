@@ -20,13 +20,13 @@ def rental(request, id):
     책 빌리기 기능 함수
     """
     rental_book = MajorBook.objects.get(pk=id)
-    rental_status=rental_book.status #대여여부
+    rental_status=rental_book.status
     
     if rental_status == '대여 가능':
-        user=UserChangeForm(instance = request.user).save(commit=False)#대여시 빌린이의 코인을 차감해줍니다
+        user=UserChangeForm(instance = request.user).save(commit=False)
         if user.coin:
-            if user.coin>0:#코인이 1개 이상일 때만, 대출이 가능합니다.
-                if rental_book.uploader != user: #자신이 올린 책을 스스로 빌릴 수는 없습니다.
+            if user.coin>0:
+                if rental_book.uploader != user:
                     user.coin-=1
                     user.save()
 
@@ -40,10 +40,10 @@ def rental(request, id):
 
                     messages.success(request, '대여가 성공했습니다!')
 
-                    form=BorrowedBookForm().save(commit=False) #여기부터는 내가 빌린 책 기능을 위해 데이터를 넘겨주는 부분입니다.
-                    form.borrower=request.user #로그인 된 유저를 빌린이에 추가합니다
-                    form.borrow_book=rental_book#책을 외래키로 저장합니다
-                    BorrowedBook=form.save()   
+                    form=BorrowedBookForm().save(commit=False)
+                    form.borrower=request.user
+                    form.borrow_book=rental_book
+                    form.save()
                 else:
                       messages.success(request, '자신이 등록한 책은 대여하실 수 없습니다!')     
         else:

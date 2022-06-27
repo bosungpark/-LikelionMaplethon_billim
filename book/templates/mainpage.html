@@ -37,7 +37,7 @@
 
   <div id="pop_category">
     {% if user.is_authenticated %}
-    <a href="{% url 'new' %}">
+    <a href="{% url 'rental_new' %}">
       <div title="책 등록하기" class="pop_category_1 pop_category_in">
         <div class="pop_category_text">
           <!-- 책 등록하기 -->
@@ -108,7 +108,7 @@
         {% for book in books %}
         <div class="recent_solution_container">
           {% if book.img %}
-            <a href="{%url 'detail' book.id %}">
+            <a href="{%url 'crud' book.id %}">
                 <img src="{{book.img.url}}" />
             </a>
           {% endif %}

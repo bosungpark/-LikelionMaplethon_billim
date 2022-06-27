@@ -42,8 +42,8 @@
       <br /><br />
 
       {% if book.uploader == user %}
-        <a href="{% url 'edit' book.pk %}" id="edit_link">수정</a>
-        <a href="{% url 'delete' book.pk %}" id="delete_link">삭제</a>
+        <a href="{% url 'rental_edit' book.pk %}" id="edit_link">수정</a>
+        <a href="{% url 'crud' book.pk %}" id="delete_link">삭제</a>
       {% endif %}
     </div>
   </div>

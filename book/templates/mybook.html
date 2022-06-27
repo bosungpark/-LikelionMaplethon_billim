@@ -13,7 +13,7 @@
   <div class="body">
     {% for content in posts %}
     <div class="content">
-      <h2><a href="{%url 'detail' content.id %}">{{content.title}}</a></h2>
+      <h2><a href="{%url 'crud' content.id %}">{{content.title}}</a></h2>
       <div class="sub">
         {{content.author}} | {{content.publisher}}<br /><br />
         {% if content.img %}
