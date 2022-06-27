@@ -70,13 +70,16 @@
     </div>
     <div id="header_specific">
         <div id="enroll" class="header_specific_in">
+            <div id="borrow_1" class="borrow_in">
             {% if user.is_authenticated %}
-            <div id="enroll_1" class="enroll_in">
-                <form id="blogForm" action="{% url 'rental_new' %}" method="POST" >
-                    {% csrf_token %}
-                    <input type="hidden" name="_method" value="PUT"/>책 등록하기
-                </form>
+                <a href="{% url 'rental_new' %}">
+                    <div id="borrow_1" class="borrow_in">
+                        책 등록하기
+                    </div>
+                </a>
             </div>
+
+
             {% else %}
             <a onclick="alert('로그인 해주세요');" href="#">
                 <div id="enroll_1" class="enroll_in">

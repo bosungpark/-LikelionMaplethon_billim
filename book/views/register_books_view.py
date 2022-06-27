@@ -8,17 +8,6 @@ from django.views import View
 from .utils import crawler
 
 class Crud(View):
-    def __init__(self,request,*args):
-        pk=args
-        if request.method == 'GET':
-            self.get(request, pk)
-        elif request.method == 'POST':
-            self.post(request)
-        elif request.method == 'PUT':
-            self.put(request, pk)
-        else:
-            self.delete(request, pk)
-
     def get(self,request, pk):
         """
         책 상세 페이지
@@ -59,8 +48,7 @@ class Crud(View):
         update_book.save()
         return redirect('crud', update_book.pk)
 
-
-    def delete(self, request, pk):
+    def delete(self, pk):
         """
         삭제함수
         """
