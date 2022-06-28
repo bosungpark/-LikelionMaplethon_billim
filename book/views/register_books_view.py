@@ -15,7 +15,7 @@ class Crud(View):
         book = MajorBook.objects.get(pk=pk)
         return render(request, 'rental_detail.html', {'book':book})
 
-    def post(self,request):
+    def post(self,request, pk):
         """
         책 등록하기 함수
         """

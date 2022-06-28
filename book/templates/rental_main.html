@@ -15,19 +15,16 @@
     >
       전체
     </button>
-    <button
-      id="cat_btn"
-      type="button"
-      onclick="location.href='/book/category'"
-    >
-      <select name="category">
+      <select name="category"
+              id="cat_btn"
+              type="button"
+              onclick="location.href='/book/category'">
         <option value="IT">IT</option>
         <option value="사회">사회</option>
         <option value="과학">과학</option>
         <option value="예술">예술</option>
         <option value="기타">기타</option>
       </select>
-    </button>
   </div>
   <div class="body">
     {% for content in posts %} {% if content.status == '대여 가능' %}

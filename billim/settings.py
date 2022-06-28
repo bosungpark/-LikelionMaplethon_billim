@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -115,10 +116,10 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'billim','static')
+    os.path.join(BASE_DIR,'billim', 'static')
 ]
 
-STATIC_ROOT= os.path.join(BASE_DIR,'static')
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -141,6 +142,6 @@ DEFAULT_FROM_MAIL = EMAIL_HOST_USER
 
 PATH="$PATH:/c/Program Files/Heroku/bin"
 
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+

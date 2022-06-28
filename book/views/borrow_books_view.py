@@ -5,16 +5,6 @@ from ..forms import BorrowedBookForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserChangeForm
 
-def book_list(request):
-    """
-    책 대여하기 함수
-    """
-    books = MajorBook.objects.all().order_by('-id')
-    paginator = Paginator(books, 8)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page) 
-    return render(request, 'rental_main.html', {'books' : books, 'posts' : posts})
-
 def rental(request, id):
     """
     책 빌리기 기능 함수
@@ -50,7 +40,20 @@ def rental(request, id):
             messages.success(request, '코인이 부족합니다!')
         return redirect('book_list')
 
+def book_list(request):
+    """
+    책 대여하기 렌더링 함수
+    """
+    books = MajorBook.objects.all().order_by('-id')
+    paginator = Paginator(books, 8)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'rental_main.html', {'books' : books, 'posts' : posts})
+
 def myborrowed_book(request):
+    """
+    내가 대여한 책 렌더링 함수
+    """
     me = request.user
     books = BorrowedBook.objects.all().filter(borrower=me).order_by('-id')
     paginator = Paginator(books, 8)
