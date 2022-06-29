@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.views import View
 from .utils import crawler
 
+
 class Crud(View):
     def get(self,request, pk):
         """
@@ -19,6 +20,7 @@ class Crud(View):
         """
         책 등록하기 함수
         """
+        # print(request)
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False)

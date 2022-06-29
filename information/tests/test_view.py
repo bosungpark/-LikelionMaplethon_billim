@@ -1,9 +1,3 @@
-import os
-from distutils.util import strtobool
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE","billim.settings")
-
-
 from django.test import RequestFactory, TestCase
 from ..views.guide_view import GuideView
 from ..views.notice_view import NoticeView
