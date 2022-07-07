@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.paginator import Paginator
-from ..models import MajorBook, BorrowedBook
-from ..forms import BorrowedBookForm
+from book.models import MajorBook
+from book.forms import BorrowedBookForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserChangeForm
 
@@ -39,25 +38,3 @@ def rental(request, id):
         else:
             messages.success(request, '코인이 부족합니다!')
         return redirect('book_list')
-
-def book_list(request):
-    """
-    책 대여하기 렌더링 함수
-    """
-    books = MajorBook.objects.all().order_by('-id')
-    paginator = Paginator(books, 8)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
-    return render(request, 'rental_main.html', {'books' : books, 'posts' : posts})
-
-def myborrowed_book(request):
-    """
-    내가 대여한 책 렌더링 함수
-    """
-    me = request.user
-    books = BorrowedBook.objects.all().filter(borrower=me).order_by('-id')
-    paginator = Paginator(books, 8)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page) 
-    return render(request, 'myborrowed_book.html', {'books': books, 'posts':posts})
-

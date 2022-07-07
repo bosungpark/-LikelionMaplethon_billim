@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import MajorBook, BorrowedBook
+from book.models import MajorBook, BorrowedBook
 
 def mypage(request):
     me = request.user

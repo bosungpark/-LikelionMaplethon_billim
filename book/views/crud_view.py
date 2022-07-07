@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core.paginator import Paginator
 from django.utils import timezone
 from ..models import MajorBook
 from ..forms import BookForm
@@ -15,13 +14,14 @@ class Crud(View):
         """
         html form은 put과 delete를 지원하지 않으므로, 직접 분기를 처리해 작업해주었습니다.
         """
-        method = self.request.POST.get('_method', '').lower()
-        if method == 'post':
-            return self.post(*args, **kwargs)
-        if method == 'put':
-            return self.put(*args, **kwargs)
-        if method == 'delete':
-            return self.delete(*args, **kwargs)
+        if self.request.POST:
+            method = self.request.POST.get('_method', '').lower()
+            if method == 'put':
+                return self.put(*args, **kwargs)
+            elif method == 'delete':
+                return self.delete(*args, **kwargs)
+            else:
+                return self.post(*args, **kwargs)
         else:
             return self.get(*args, **kwargs)
 
@@ -30,9 +30,9 @@ class Crud(View):
         책 상세 페이지
         """
         book = MajorBook.objects.get(pk=pk)
-        return render(request, 'rental_detail.html', {'book':book})
+        return render(request, 'rental/rental_detail.html', {'book':book})
 
-    def post(self,request, pk):
+    def post(self,request):
         """
         책 등록하기 함수
         """
@@ -54,7 +54,6 @@ class Crud(View):
         """
         수정함수
         """
-        print("!!!!!!!!!!")
         update_book = MajorBook.objects.get(pk=pk)
         update_book.title = request.POST['title']
         update_book.author = request.POST['author']
@@ -73,28 +72,3 @@ class Crud(View):
         delete_book = MajorBook.objects.get(pk=pk)
         delete_book.delete()
         return redirect('book_list')
-
-def mybook(request):
-    """
-    내가 등록한 책 목록 랜더링 함수입니다.
-    """
-    me = request.user
-    books = MajorBook.objects.all().filter(uploader=me).order_by('-id')
-    paginator = Paginator(books, 8)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
-    return render(request, 'mybook.html', {'books': books, 'posts':posts})
-
-def rental_new(request):
-    """
-    rental_new 렌더링 함수입니다.
-    """
-    form = BookForm()
-    return render(request, 'rental_new.html', {'form': form})
-
-def rental_edit(request, id):
-    """
-    rental_edit 렌더링 함수입니다.
-    """
-    edit_book = MajorBook.objects.get(pk=id)
-    return render(request, 'rental_edit.html', {'book': edit_book})

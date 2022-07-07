@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from ..models import MajorBook
-
+from book.models import MajorBook
 
 def category(request):
     """
@@ -12,4 +11,4 @@ def category(request):
     paginator = Paginator(books, 8)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request, 'rental_main.html', {'books' : books, 'posts' : posts, 'category': category})
+    return render(request, 'rental/rental_main.html', {'books' : books, 'posts' : posts, 'category': category})
