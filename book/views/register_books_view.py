@@ -9,6 +9,22 @@ from .utils import crawler
 
 
 class Crud(View):
+    http_method_names = ['get', 'post', 'put', 'delete']
+
+    def dispatch(self, *args, **kwargs):
+        """
+        html form은 put과 delete를 지원하지 않으므로, 직접 분기를 처리해 작업해주었습니다.
+        """
+        method = self.request.POST.get('_method', '').lower()
+        if method == 'post':
+            return self.post(*args, **kwargs)
+        if method == 'put':
+            return self.put(*args, **kwargs)
+        if method == 'delete':
+            return self.delete(*args, **kwargs)
+        else:
+            return self.get(*args, **kwargs)
+
     def get(self,request, pk):
         """
         책 상세 페이지
@@ -20,7 +36,6 @@ class Crud(View):
         """
         책 등록하기 함수
         """
-        # print(request)
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False)
@@ -39,6 +54,7 @@ class Crud(View):
         """
         수정함수
         """
+        print("!!!!!!!!!!")
         update_book = MajorBook.objects.get(pk=pk)
         update_book.title = request.POST['title']
         update_book.author = request.POST['author']
@@ -48,7 +64,7 @@ class Crud(View):
         update_book.info_text = request.POST['info_text']
         update_book.status = request.POST['status']
         update_book.save()
-        return redirect('crud', update_book.pk)
+        return redirect('book_list')
 
     def delete(self, pk):
         """
@@ -76,9 +92,9 @@ def rental_new(request):
     form = BookForm()
     return render(request, 'rental_new.html', {'form': form})
 
-def rental_edit(request,pk):
+def rental_edit(request, id):
     """
     rental_edit 렌더링 함수입니다.
     """
-    edit_book = MajorBook.objects.get(pk=pk)
+    edit_book = MajorBook.objects.get(pk=id)
     return render(request, 'rental_edit.html', {'book': edit_book})

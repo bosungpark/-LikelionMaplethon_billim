@@ -10,8 +10,8 @@ from .views.mail_view import *
 
 urlpatterns = [
     path('', mainpage, name="mainpage"),
-    path('/rental_new/', rental_new, name="rental_new"),
-    path('/rental_edit/', rental_edit, name="rental_edit"),
+    path('rental_new/', rental_new, name="rental_new"),
+    path('rental_edit/<int:id>', rental_edit, name="rental_edit"),
 
     path('book_list', book_list, name="book_list"),
     path('crud/<int:pk>', Crud.as_view(), name="crud"),

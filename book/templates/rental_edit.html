@@ -9,7 +9,8 @@
   <h1>수정하기</h1>
   <hr />
   <div class="container">
-    <form action="{% url 'crud' book.pk %}" method="post">
+    <form action="{% url 'crud' book.pk %}" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="put">
       {% csrf_token %}
       <h2>제목: <input type="text" name="title" value="{{book.title}}" /></h2>
       <h2>저자: <input type="text" name="author" value="{{book.author}}" /></h2>
@@ -23,15 +24,11 @@
       <h2>
         대여 여부 : <input type="text" name="status" value="{{book.status}}" />
       </h2>
-      {% comment %} status 관련 부분 잘 모르겠음 {% endcomment %}
-      <h2>
         책 상태 :
-        <textarea name="info_text" id="" cols="30" rows="10">
-{{book.info_text}}</textarea>
+        <textarea name="info_text" id="" cols="30" rows="10" value="{{book.info_text}}"></textarea>
       </h2>
       <br />
-
-      <button type="submit" onclick="location.href='{% url 'crud' %}'" id="submit">
+      <button type="submit" value="PUT" id="submit">
         수정하기
       </button>
     </form>
