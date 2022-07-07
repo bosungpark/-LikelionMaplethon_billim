@@ -1,1 +1,1 @@
-from .test_views import MajorBookTests
+from book.tests.test_views.test_majorbook_views import MajorBookTests
